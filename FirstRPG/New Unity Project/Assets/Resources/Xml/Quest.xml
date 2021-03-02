@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Quest>
+	<Main1>
+		<name type="xs:string">메인 퀘스트</name>
+		<text type="xs:string">Boss를 물리쳐주게.\n보상은 코인 10개라네.</text>
+		<target type="xs:string">Boss</target>
+		<num type="xs:integer">1</num>
+		<reward type="xs:integer">10</reward>
+		<completed type="xs:boolean">false</completed>
+	</Main1>
+	<Sub1>
+		<name type="xs:string">몬스터 잡기</name>
+		<text type="xs:string">슬라임 2마리 물리쳐 주세요. \n보상은 코인 3개입니다.</text>
+		<target type="xs:string">Slime</target>
+		<num type="xs:integer">2</num>
+		<reward type="xs:integer">3</reward>
+		<completed type="xs:boolean">false</completed>
+	</Sub1>
+	<Sub2>
+		<name type="xs:string">코인 얻기</name>
+		<text type="xs:string">뿔거북 2마리 물리쳐 주세요. \n보상은 코인 3개입니다.</text>
+		<target type="xs:string">Turtle</target>
+		<num type="xs:integer">2</num>
+		<reward type="xs:integer">3</reward>
+		<completed type="xs:boolean">false</completed>
+	</Sub2>
+</Quest>
