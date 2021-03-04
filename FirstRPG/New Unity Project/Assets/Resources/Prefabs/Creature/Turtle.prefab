@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 1309982553648011520}
   - component: {fileID: 1405025968062569133}
   - component: {fileID: 1405025968062569132}
+  - component: {fileID: 7232274243505378032}
   m_Layer: 0
   m_Name: Turtle
   m_TagString: enemy
@@ -513,12 +514,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _State: 0
   _MoveSpeed: 0
+  _currentHp: 0
+  _maxHp: 0
+  _atkDmg: 0
   _searchRange: 10
   _atkRange: 2.5
   destPos: {x: 0, y: 0, z: 0}
   initLook: {x: 0, y: 0, z: 0}
   initPos: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+--- !u!65 &7232274243505378032
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403409697213877762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1403443808436978848
 GameObject:
   m_ObjectHideFlags: 0

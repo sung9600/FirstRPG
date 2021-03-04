@@ -75,9 +75,10 @@ GameObject:
   - component: {fileID: 84801493909966884}
   - component: {fileID: 35837852211030009}
   - component: {fileID: 35837852211030010}
+  - component: {fileID: 960665269187314950}
   m_Layer: 0
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,12 +148,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _State: 0
   _MoveSpeed: 0
+  _currentHp: 0
+  _maxHp: 0
+  _atkDmg: 0
   _searchRange: 10
   _atkRange: 2.5
   destPos: {x: 0, y: 0, z: 0}
   initLook: {x: 0, y: 0, z: 0}
   initPos: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+--- !u!65 &960665269187314950
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34202520892138056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &34345542772714800
 GameObject:
   m_ObjectHideFlags: 0

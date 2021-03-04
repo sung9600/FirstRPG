@@ -5,7 +5,10 @@ using static Define;
 
 public class EnemyController : BaseController
 {
-    public float _searchRange=10f;
+    public float _currentHp;
+    public float _maxHp;
+    public float _atkDmg;
+    public float _searchRange = 10f;
     public float _atkRange = 2.5f;
     public Vector3 destPos;
     public Vector3 initLook;
@@ -48,31 +51,22 @@ public class EnemyController : BaseController
     }
     protected override void UpdateController()
     {
-        switch (State)
-        {
-            case CreatureState.Idle:
-                UpdateIdle();
-                break;
-            case CreatureState.Moving:
-                UpdateMoving();
-                break;
-            case CreatureState.Skill:
-                UpdateSkill();
-                break;
-            case CreatureState.Dead:
-                UpdateDead();
-                break;
-        }
+        base.UpdateController();
     }
     private void FixedUpdate()
     {
+        if (_currentHp <= 0)
+        {
+            State = CreatureState.Dead;
+            return;
+        }
         Move();
     }
     private void Move()
     {
         Vector3 moveDir = destPos - transform.position;
-        if(moveDir != Vector3.zero)
-            transform.forward=moveDir.normalized;
+        if (moveDir != Vector3.zero)
+            transform.forward = moveDir.normalized;
         if (moveDir.magnitude < _MoveSpeed * Time.deltaTime)
         {
             // 도착
@@ -93,21 +87,21 @@ public class EnemyController : BaseController
                 destPos = target.transform.position;
         }
         else
-        { 
+        {
             // 시야 밖 -> 복귀로 전환
             destPos = initPos;
-            Debug.Log("else");
+            //Debug.Log("else");
         }
     }
     protected override void UpdateIdle()
     {
         Vector3 targetDist = target.transform.position - transform.position;
-        if(Vector3.Magnitude(targetDist) > _searchRange|| Vector3.Magnitude(targetDist)<=_MoveSpeed*Time.deltaTime)
+        if (Vector3.Magnitude(targetDist) > _searchRange || Vector3.Magnitude(targetDist) <= _MoveSpeed * Time.deltaTime)
         {
             transform.forward = Vector3.forward;
             State = CreatureState.Idle;
         }
-        else if(Vector3.Magnitude(targetDist) <= _searchRange)
+        else if (Vector3.Magnitude(targetDist) <= _searchRange)
         {
             destPos = target.transform.position;
             State = CreatureState.Moving;
@@ -118,23 +112,21 @@ public class EnemyController : BaseController
     {
         Vector3 moveDir = destPos - transform.position;
         float dist = moveDir.magnitude;
-        Debug.Log(dist);
-        if (destPos==initPos && dist < _atkRange)
+        //Debug.Log(dist);
+        if (destPos == initPos && dist < _atkRange)
         {
-            //여기로 안들어가는데?
-            Debug.Log("reached");
+            //Debug.Log("reached");
             State = CreatureState.Idle;
             return;
         }
-        else if (destPos!=initPos && dist < _atkRange)
+        else if (destPos != initPos && dist < _atkRange)
         {
-            Debug.Log("To ATK");
+            //Debug.Log("To ATK");
             State = CreatureState.Skill;
         }
-        else if(dist<_searchRange)
+        else if (dist < _searchRange)
         {
             transform.forward = moveDir.normalized;
-            //
         }
         else
         {
@@ -154,9 +146,9 @@ public class EnemyController : BaseController
             destPos = target.transform.position;
             State = CreatureState.Skill;
         }
-        else if(dist<_searchRange)
+        else if (dist < _searchRange)
         {
-            Debug.Log("To Moving");
+            //Debug.Log("To Moving");
             destPos = target.transform.position;
             State = CreatureState.Moving;
         }
@@ -169,6 +161,7 @@ public class EnemyController : BaseController
 
     protected override void UpdateDead()
     {
+        Destroy(gameObject, 1f);
     }
     protected void checkAtk()
     {
@@ -181,5 +174,14 @@ public class EnemyController : BaseController
             // 여기 name or tag 비교해서 player가 atk당하는거 구현
             Debug.Log(hit.collider.gameObject.name);
         }
+    }
+    public void gothit(int dmg)
+    {
+        //Debug.Log($"gothit{dmg}");
+        _currentHp -= dmg;
+        if (_currentHp <= 0)
+            State = CreatureState.Dead;
+        // Todo : Dmg 메시지 프리팹 만들기
+        // Todo : hpbar만들거면 슬라이더 값 줄이기
     }
 }

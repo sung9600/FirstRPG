@@ -8,6 +8,8 @@ public class Turtle : EnemyController
     public override void Init()
     {
         base.Init();
-        _atkRange = 1.5f;
+        _atkRange = 2.5f;
+        _currentHp = 10;
+        _maxHp = 10;
     }
 }

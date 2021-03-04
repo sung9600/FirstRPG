@@ -87,11 +87,11 @@ public class PlayerController : BaseController
     }
     IEnumerator CoStartShootArrow()
     {
-        GameObject arrowFront = GameManager.Resource.Instantiate("Creature/Others/Arrow", GameObject.Find("Others").transform);
-        GameObject arrowLeft60 = GameManager.Resource.Instantiate("Creature/Others/Arrow", GameObject.Find("Others").transform);
-        GameObject arrowLeft30 = GameManager.Resource.Instantiate("Creature/Others/Arrow", GameObject.Find("Others").transform);
-        GameObject arrowRight60 = GameManager.Resource.Instantiate("Creature/Others/Arrow", GameObject.Find("Others").transform);
-        GameObject arroRight30 = GameManager.Resource.Instantiate("Creature/Others/Arrow", GameObject.Find("Others").transform);
+        GameObject arrowFront = GameManager.Resource.Instantiate("Creature/Others/Arrow", GameObject.Find("Others/Arrows").transform);
+        GameObject arrowLeft60 = GameManager.Resource.Instantiate("Creature/Others/Arrow", GameObject.Find("Others/Arrows").transform);
+        GameObject arrowLeft30 = GameManager.Resource.Instantiate("Creature/Others/Arrow", GameObject.Find("Others/Arrows").transform);
+        GameObject arrowRight60 = GameManager.Resource.Instantiate("Creature/Others/Arrow", GameObject.Find("Others/Arrows").transform);
+        GameObject arroRight30 = GameManager.Resource.Instantiate("Creature/Others/Arrow", GameObject.Find("Others/Arrows").transform);
         arrowFront.transform.position = bulletPos[0].position;
         arrowFront.transform.rotation = bulletPos[0].rotation;
         arrowLeft30.transform.position = bulletPos[1].position;

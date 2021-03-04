@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         GetComponent<Rigidbody>().AddForce(transform.up * 30f, ForceMode.Impulse);
@@ -13,10 +12,17 @@ public class Arrow : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("wall") || collision.transform.CompareTag("enemy"))
-        {
+        if (!collision.transform.CompareTag("Bullet"))
             Destroy(gameObject);
-            //gameObject.SetActive(false);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("enemy"))
+        {
+            Debug.Log("hit enemy");
+            other.GetComponent<EnemyController>().gothit(UserStat.Instance._atk);
+            Destroy(gameObject);
         }
     }
 }

@@ -7,14 +7,16 @@ public class Chest : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Player"))
         {
             //키가 있는지 확인하고
             if (UserStat.Instance._Key > 0)
             {
                 // 키가있으면 열고
+                Debug.Log($"{UserStat.Instance._Key}");
                 UserStat.Instance._Key--;
+                Debug.Log($"{UserStat.Instance._Key}");
+                InGame.ChangeKey(UserStat.Instance._Key);
                 transform.Find("Treasure_Chest_Up").rotation = Quaternion.Euler(45, 45, 0);
                 //코인 생성
                 int _coinnum = Random.Range(3, 10);
