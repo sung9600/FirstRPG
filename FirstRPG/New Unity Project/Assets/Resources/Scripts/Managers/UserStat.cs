@@ -6,8 +6,8 @@ public class UserStat : MonoBehaviour
 {
     public int _atk;
     public float _atkspeed;
-    public int _hp;
-    public int _currenthp;
+    public float _hp;
+    public float _currenthp;
     public int[] _upCost = new int[3]; //atk spd hp 순
     public int _Coin = 0;
     public int _Key = 1;

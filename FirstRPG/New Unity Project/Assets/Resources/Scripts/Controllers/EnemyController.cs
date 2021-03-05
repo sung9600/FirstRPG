@@ -5,7 +5,7 @@ using static Define;
 
 public class EnemyController : BaseController
 {
-    public float _currentHp;
+    public int _currentHp;
     public float _maxHp;
     public float _atkDmg;
     public float _searchRange = 10f;
@@ -169,10 +169,16 @@ public class EnemyController : BaseController
         Vector3 boxHalfSize = new Vector3(5f, 5f, 5f);  // 캐스트할 박스 크기의 절반 크기. 이렇게 하면 가로 2 세로 2 높이 2의 크기의 공간을 캐스트한다.
         Vector3 direction = Vector3.up;
         RaycastHit[] hits = Physics.BoxCastAll(boxCenter, boxHalfSize, direction);    // BoxCastAll은 찾아낸 충돌체를 배열로 반환한다.
-        foreach (var hit in hits)
+        foreach (RaycastHit hit in hits)
         {
             // 여기 name or tag 비교해서 player가 atk당하는거 구현
-            Debug.Log(hit.collider.gameObject.name);
+            if (hit.transform.CompareTag("Player"))
+            {
+                UserStat.Instance._currenthp -= _atkDmg;
+                InGame.ChangeHp(UserStat.Instance._currenthp / UserStat.Instance._hp);
+                Debug.Log(hit.collider.gameObject.name);
+            }
+            //
         }
     }
     public void gothit(int dmg)

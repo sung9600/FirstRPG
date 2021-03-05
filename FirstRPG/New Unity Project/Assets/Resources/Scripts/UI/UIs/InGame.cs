@@ -25,7 +25,7 @@ public class InGame : MonoBehaviour
         //Debug.Log(HpIndicator.Find("ImageMask"));
         //Debug.Log(HpIndicator.Find("ImageMask").Find("Slider"));
         HpIndicator.Find("ImageMask").Find("Slider").GetComponent<Slider>().value = value;
-        HpIndicator.Find("Text").GetComponent<TextMeshProUGUI>().text = $"{(int)value * 100}%";
+        HpIndicator.Find("Text").GetComponent<TextMeshProUGUI>().text = $"{value * 100}%";
     }
 
     public static void ChangeCoin(int value)

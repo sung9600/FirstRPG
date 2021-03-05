@@ -8,6 +8,7 @@ public class Slime : EnemyController
     {
         base.Init();
         _atkRange = 2.5f;
+        _atkDmg = 10f;
         _currentHp = 10;
         _maxHp = 10;
     }
